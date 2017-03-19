@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Lets Encrypt
+if [ -z "EMAIL" ] || [ -z "$DOMAIN" ]; then
+ echo "You need the \$EMAIL and the \$DOMAIN Variables"
+else
+ certbot certonly --webroot --webroot-path /etc/letsencrypt/webrootauth -d $DOMAIN --email $EMAIL --agree-tos --quiet --renew-by-default
+
+# sed -i "s/<DOMAIN>/${DOMAIN}/g" /etc/nginx/nginx.conf
+ sed -i "s/localhost/${DOMAIN}/g" /etc/nginx/nginx.conf
+
+ nginx -s reload
+fi
