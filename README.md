@@ -28,8 +28,7 @@ Get and build nextcloud-docker
 
 ```
 git clone https://github.com/martmaiste/nextcloud-docker.git
-cd nextcloud-docker
-docker build -t nextcloud .
+docker build -t nextcloud nextcloud-docker
 ```
 
 Run nextcloud-docker
