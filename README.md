@@ -64,4 +64,4 @@ docker run --name nextcloud -p 80:8888 -p 443:4430 \
 
 [Nginx with SSL and Let's Eencrypt support by ngineered](https://github.com/ngineered/nginx-php-fpm)
 
-[Self-signed certificate generator by paulczar](https://raw.githubusercontent.com/paulczar/omgwtfssl/master/generate-certs)
+[Self Signed SSL Certificate Generator by paulczar](https://github.com/paulczar/omgwtfssl)
