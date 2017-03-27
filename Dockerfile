@@ -15,7 +15,7 @@ ENV UID=1000 GID=1000 \
     EMAIL=hostmaster@localhost \
     DOMAIN=localhost
 
-RUN echo "@testing https://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
+RUN echo "https://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
  && BUILD_DEPS=" \
     gnupg \
     tar \
@@ -41,51 +41,51 @@ RUN echo "@testing https://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/r
     samba-client \
     su-exec \
     tzdata \
-    php7.1@testing \
-    php7.1-fpm@testing \
-    php7.1-intl@testing \
-    php7.1-mbstring@testing \
-    php7.1-curl@testing \
-    php7.1-gd@testing \
-    php7.1-fileinfo@testing \
-    php7.1-mcrypt@testing \
-    php7.1-opcache@testing \
-    php7.1-json@testing \
-    php7.1-session@testing \
-    php7.1-pdo@testing \
-    php7.1-dom@testing \
-    php7.1-ctype@testing \
-    php7.1-pdo_mysql@testing \
-    php7.1-pdo_pgsql@testing \
-    php7.1-pgsql@testing \
-    php7.1-pdo_sqlite@testing \
-    php7.1-sqlite3@testing \
-    php7.1-zlib@testing \
-    php7.1-zip@testing \
-    php7.1-xmlreader@testing \
-    php7.1-xml@testing \
-    php7.1-xmlwriter@testing \
-    php7.1-posix@testing \
-    php7.1-openssl@testing \
-    php7.1-ldap@testing \
-    php7.1-ftp@testing \
-    php7.1-pcntl@testing \
-    php7.1-exif@testing \
-    php7.1-pear@testing \
-    php7.1-dev@testing \
+    php7 \
+    php7-fpm \
+    php7-intl \
+    php7-mbstring \
+    php7-curl \
+    php7-gd \
+    php7-fileinfo \
+    php7-mcrypt \
+    php7-opcache \
+    php7-json \
+    php7-session \
+    php7-pdo \
+    php7-dom \
+    php7-ctype \
+    php7-pdo_mysql \
+    php7-pdo_pgsql \
+    php7-pgsql \
+    php7-pdo_sqlite \
+    php7-sqlite3 \
+    php7-zlib \
+    php7-zip \
+    php7-xmlreader \
+    php7-xml \
+    php7-xmlwriter \
+    php7-posix \
+    php7-openssl \
+    php7-ldap \
+    php7-ftp \
+    php7-pcntl \
+    php7-exif \
+    php7-pear \
+    php7-dev \
  && pecl install smbclient apcu redis \
  && cd /tmp && wget -q http://ftp.gnu.org/pub/gnu/libiconv/libiconv-${GNU_LIBICONV_VERSION}.tar.gz \
  && tar xzf libiconv-${GNU_LIBICONV_VERSION}.tar.gz && cd libiconv-${GNU_LIBICONV_VERSION} \
  && ./configure --prefix=/usr/local \
  && make && make install && libtool --finish /usr/local/lib && cd /tmp \
- && wget -q http://is1.php.net/get/php-7.1.2.tar.gz/from/this/mirror -O php7.1.tar.gz \
- && tar xzf php7.1.tar.gz && cd /tmp/php-7.1.2/ext/iconv && phpize7.1 \
- && ./configure --with-iconv=/usr/local --with-php-config=/usr/bin/php-config7.1 \
- && make && cp modules/iconv.so /usr/lib/php7.1/modules && cd /tmp \
- && echo "extension=iconv.so" > /etc/php7.1/conf.d/00_iconv.ini \
- && echo "extension=smbclient.so" > /etc/php7.1/conf.d/00_smbclient.ini \
- && echo "extension=redis.so" > /etc/php7.1/conf.d/redis.ini \
- && sed -i 's|;session.save_path = "/tmp"|session.save_path = "/data/session"|g' /etc/php7.1/php.ini \
+ && wget -q http://is1.php.net/get/php-7.1.2.tar.gz/from/this/mirror -O php7.tar.gz \
+ && tar xzf php7.tar.gz && cd /tmp/php-7.1.2/ext/iconv && phpize7 \
+ && ./configure --with-iconv=/usr/local --with-php-config=/usr/bin/php-config7 \
+ && make && cp modules/iconv.so /usr/lib/php7 && cd /tmp \
+ && echo "extension=iconv.so" > /etc/php7/conf.d/00_iconv.ini \
+ && echo "extension=smbclient.so" > /etc/php7/conf.d/00_smbclient.ini \
+ && echo "extension=redis.so" > /etc/php7/conf.d/redis.ini \
+ && sed -i 's|;session.save_path = "/tmp"|session.save_path = "/data/session"|g' /etc/php7/php.ini \
  && pip install -U pip \
  && pip install -U certbot \
  && mkdir -p /etc/letsencrypt/webrootauth \
@@ -107,13 +107,13 @@ RUN echo "@testing https://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/r
  && if [ "${FINGERPRINT}" != "${GPG_nextcloud}" ]; then echo "Warning! Wrong GPG fingerprint!" && exit 1; fi \
  && echo "All seems good, now unpacking ${NEXTCLOUD_TARBALL}..." \
  && tar xjf ${NEXTCLOUD_TARBALL} --strip 1 -C /nextcloud \
- && apk del ${BUILD_DEPS} php7.1-pear php7.1-dev \
+ && apk del ${BUILD_DEPS} php7-pear php7-dev \
  && rm -rf /var/cache/apk/* /tmp/* /root/.gnupg
 
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY php-fpm.conf /etc/php7.1/php-fpm.conf
-COPY opcache.ini /etc/php7.1/conf.d/00_opcache.ini
-COPY apcu.ini /etc/php7.1/conf.d/apcu.ini
+COPY php-fpm.conf /etc/php7/php-fpm.conf
+COPY opcache.ini /etc/php7/conf.d/00_opcache.ini
+COPY apcu.ini /etc/php7/conf.d/apcu.ini
 COPY run.sh /usr/local/bin/run.sh
 COPY setup.sh /usr/local/bin/setup.sh
 COPY occ /usr/local/bin/occ
