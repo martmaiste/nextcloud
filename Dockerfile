@@ -90,7 +90,6 @@ RUN echo "https://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositori
  && pip install -U certbot \
  && mkdir -p /etc/letsencrypt/webrootauth \
  && mkdir -p /etc/letsencrypt/live/localhost \
- && wget https://raw.githubusercontent.com/paulczar/omgwtfssl/master/generate-certs -O /usr/local/bin/generate-certs \
  && mkdir /nextcloud \
  && NEXTCLOUD_TARBALL="nextcloud-${NEXTCLOUD_VERSION}.tar.bz2" \
  && wget -q https://download.nextcloud.com/server/releases/${NEXTCLOUD_TARBALL} \
@@ -118,11 +117,11 @@ COPY run.sh /usr/local/bin/run.sh
 COPY setup.sh /usr/local/bin/setup.sh
 COPY occ /usr/local/bin/occ
 COPY s6.d /etc/s6.d
+COPY generate-certs /usr/local/bin/generate-certs
 COPY letsencrypt-setup /usr/local/bin/letsencrypt-setup
 COPY letsencrypt-renew /usr/local/bin/letsencrypt-renew
 
 RUN chmod +x /usr/local/bin/* /etc/s6.d/*/* /etc/s6.d/.s6-svscan/*
-RUN chmod +x /usr/local/bin/letsencrypt-setup /usr/local/bin/letsencrypt-renew
 
 VOLUME /data /config /apps2
 
