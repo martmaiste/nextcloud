@@ -2,9 +2,9 @@
 
 ## About
 
-This Nextcloud docker file includes php-fpm, nginx+ssl, letsencrypt.
-By default it uses sqlite but can be configured to use external MySql or PostgreSQL database.
-When installed first time, it generates the self-signed SSL certificate. It can later by replaced by generating a Let's Encrypt certificate using included tools.
+This Nextcloud Docker uses php-fpm, Nginx reverse proxy with SSL and Let's Encrypt.
+By default it uses SQLite but can be configured to use external MySql or PostgreSQL database.
+At installation, the self-signed SSL is certificated. This can later by replaced by generating a Let's Encrypt certificate using included tools.
 
 ## Installation
 
