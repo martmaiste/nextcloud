@@ -1,4 +1,4 @@
-## Nextcloud Docker using php-fpm, Nginx with SSL and Let's Encrypt support 
+## Nextcloud Docker using php-fpm, Nginx reverse proxy with SSL and Let's Encrypt support 
 
 ## About
 
