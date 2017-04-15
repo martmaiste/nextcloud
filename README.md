@@ -3,8 +3,8 @@
 ## About
 
 This Nextcloud Docker uses php-fpm, Nginx reverse proxy with SSL and Let's Encrypt.
-By default it uses SQLite but can be configured to use external MySql or PostgreSQL database.
-At installation, the self-signed SSL is certificated. This can later by replaced by generating a Let's Encrypt certificate using included tools.
+By default it uses SQLite but can be configured to use external MySQL or PostgreSQL database.
+At installation, the self-signed SSL certificate is generated. This can later replaced by generating a Let's Encrypt certificate using included tools.
 
 ## Installation
 
