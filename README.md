@@ -1,6 +1,6 @@
-## nextcloud-docker
+## Nextcloud docker
 
-## Synopsis
+## About
 
 This Nextcloud docker file includes php-fpm, nginx+ssl, letsencrypt.
 By default it uses sqlite but can be configured to use external MySql or PostgreSQL database.
