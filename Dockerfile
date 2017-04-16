@@ -1,7 +1,6 @@
 FROM alpine:edge
 
 ARG NEXTCLOUD_VERSION=11.0.2
-ARG GNU_LIBICONV_VERSION=1.15
 ARG GPG_nextcloud="2880 6A87 8AE4 23A2 8372  792E D758 99B9 A724 937A"
 
 ENV UID=1000 GID=1000 \
@@ -26,14 +25,13 @@ RUN echo "https://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositori
     libtool \
     libffi-dev \
     openssl-dev \
-    python-dev \
     samba-dev" \
  && apk -U upgrade && apk add \
     ${BUILD_DEPS} \
     bash \
-    python \
-    py-pip \   
     nginx \
+    libssl1.0 \
+    certbot \
     s6 \
     libressl \
     ca-certificates \
@@ -71,23 +69,13 @@ RUN echo "https://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositori
     php7-ftp \
     php7-pcntl \
     php7-exif \
+    php7-redis \
+    php7-iconv \
     php7-pear \
     php7-dev \
- && pecl install smbclient apcu redis \
- && cd /tmp && wget -q http://ftp.gnu.org/pub/gnu/libiconv/libiconv-${GNU_LIBICONV_VERSION}.tar.gz \
- && tar xzf libiconv-${GNU_LIBICONV_VERSION}.tar.gz && cd libiconv-${GNU_LIBICONV_VERSION} \
- && ./configure --prefix=/usr/local \
- && make && make install && libtool --finish /usr/local/lib && cd /tmp \
- && wget -q http://is1.php.net/get/php-7.1.2.tar.gz/from/this/mirror -O php7.tar.gz \
- && tar xzf php7.tar.gz && cd /tmp/php-7.1.2/ext/iconv && phpize7 \
- && ./configure --with-iconv=/usr/local --with-php-config=/usr/bin/php-config7 \
- && make && cp modules/iconv.so /usr/lib/php7 && cd /tmp \
- && echo "extension=iconv.so" > /etc/php7/conf.d/00_iconv.ini \
+ && pecl install smbclient apcu \
  && echo "extension=smbclient.so" > /etc/php7/conf.d/00_smbclient.ini \
- && echo "extension=redis.so" > /etc/php7/conf.d/redis.ini \
  && sed -i 's|;session.save_path = "/tmp"|session.save_path = "/data/session"|g' /etc/php7/php.ini \
- && pip install -U pip \
- && pip install -U certbot \
  && mkdir -p /etc/letsencrypt/webrootauth \
  && mkdir -p /etc/letsencrypt/live/localhost \
  && mkdir /nextcloud \
