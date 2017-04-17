@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM alpine:latest
 
 ARG NEXTCLOUD_VERSION=11.0.2
 ARG GPG_nextcloud="2880 6A87 8AE4 23A2 8372  792E D758 99B9 A724 937A"
@@ -14,7 +14,7 @@ ENV UID=1000 GID=1000 \
     EMAIL=hostmaster@localhost \
     DOMAIN=localhost
 
-RUN echo "https://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
+RUN echo "@testing https://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
  && BUILD_DEPS=" \
     gnupg \
     tar \
@@ -25,60 +25,57 @@ RUN echo "https://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositori
     libtool \
     libffi-dev \
     openssl-dev \
-    python-dev \
     samba-dev" \
  && apk -U upgrade && apk add \
     ${BUILD_DEPS} \
     bash \
     nginx \
-    python \
-    py-pip \
+    libssl1.0 \
     openssl \
+    certbot \
     s6 \
     ca-certificates \
     libsmbclient \
     samba-client \
     su-exec \
     tzdata \
-    php7 \
-    php7-fpm \
-    php7-intl \
-    php7-mbstring \
-    php7-curl \
-    php7-gd \
-    php7-fileinfo \
-    php7-mcrypt \
-    php7-opcache \
-    php7-json \
-    php7-session \
-    php7-pdo \
-    php7-dom \
-    php7-ctype \
-    php7-pdo_mysql \
-    php7-pdo_pgsql \
-    php7-pgsql \
-    php7-pdo_sqlite \
-    php7-sqlite3 \
-    php7-zlib \
-    php7-zip \
-    php7-xmlreader \
-    php7-xml \
-    php7-xmlwriter \
-    php7-posix \
-    php7-openssl \
-    php7-ldap \
-    php7-ftp \
-    php7-pcntl \
-    php7-exif \
-    php7-redis \
-    php7-iconv \
-    php7-pear \
-    php7-dev \
+    php7@testing \
+    php7-fpm@testing \
+    php7-intl@testing \
+    php7-mbstring@testing \
+    php7-curl@testing \
+    php7-gd@testing \
+    php7-fileinfo@testing \
+    php7-mcrypt@testing \
+    php7-opcache@testing \
+    php7-json@testing \
+    php7-session@testing \
+    php7-pdo@testing \
+    php7-dom@testing \
+    php7-ctype@testing \
+    php7-pdo_mysql@testing \
+    php7-pdo_pgsql@testing \
+    php7-pgsql@testing \
+    php7-pdo_sqlite@testing \
+    php7-sqlite3@testing \
+    php7-zlib@testing \
+    php7-zip@testing \
+    php7-xmlreader@testing \
+    php7-xml@testing \
+    php7-xmlwriter@testing \
+    php7-posix@testing \
+    php7-openssl@testing \
+    php7-ldap@testing \
+    php7-ftp@testing \
+    php7-pcntl@testing \
+    php7-exif@testing \
+    php7-redis@testing \
+    php7-iconv@testing \
+    php7-pear@testing \
+    php7-dev@testing \
  && pecl install smbclient apcu \
  && echo "extension=smbclient.so" > /etc/php7/conf.d/00_smbclient.ini \
  && sed -i 's|;session.save_path = "/tmp"|session.save_path = "/data/session"|g' /etc/php7/php.ini \
- && pip install -U pip \
- && pip install -U certbot \
  && mkdir -p /etc/letsencrypt/webrootauth \
  && mkdir -p /etc/letsencrypt/live/localhost \
  && mkdir /nextcloud \
