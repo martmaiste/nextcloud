@@ -31,6 +31,7 @@ RUN echo "https://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositori
     bash \
     nginx \
     libssl1.0 \
+    openssl \
     certbot \
     s6 \
     libressl \
