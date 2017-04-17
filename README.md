@@ -12,7 +12,7 @@ Install and run MariaDB 10
 
 Random MySQL root password is generated at install time and outputed to messages log.
 
-Database and user for nextcloud is also created.
+Database and user for Nextcloud is also created.
 
 ```
 docker run -d --name nextcloud-db \
@@ -24,7 +24,30 @@ docker run -d --name nextcloud-db \
        mariadb:10
 ```
 
-Get and build nextcloud-docker
+Install and run Nextcloud Docker
+
+```
+docker run --name nextcloud -p 80:8888 -p 443:4430 \
+       --link nextcloud-db:nextcloud-db \
+       -v /mnt2/nextcloud-data:/data \
+       -v /mnt2/nextcloud-config:/config \
+       -v /mnt2/nextcloud-app:/apps2 \
+       -e UID=1000 -e GID=1000 \
+       -e UPLOAD_MAX_SIZE=10G \
+       -e APC_SHM_SIZE=128M \
+       -e OPCACHE_MEM_SIZE=128 \
+       -e CRON_PERIOD=15m \
+       -e DB_TYPE=mysql \
+       -e DB_HOST=nextcloud-db \
+       -e DB_USER=nextcloud \
+       -e DB_PASSWORD=password \
+       -e TZ=Etc/UTC \
+       -e DOMAIN=localhost \
+       -e EMAIL=hostmaster@localhost \
+       martmaiste/nextcloud
+```
+
+### Building
 
 ```
 git clone https://github.com/martmaiste/nextcloud-docker.git
