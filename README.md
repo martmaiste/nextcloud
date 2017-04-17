@@ -57,7 +57,7 @@ docker build -t nextcloud nextcloud
 Run nextcloud-docker
 
 ```
-docker run -d --name nextcloud -p 80:8888 -p 443:4430 \
+docker run -d --name nextcloud -p 80:8080 -p 443:8443 \
        --link nextcloud-db:nextcloud-db \
        -v /mnt2/nextcloud-data:/data \
        -v /mnt2/nextcloud-config:/config \
@@ -78,7 +78,7 @@ docker run -d --name nextcloud -p 80:8888 -p 443:4430 \
 ```
 DOMAIN and EMAIL are mainly used for generating Let's Encrypt certificate later. Remove if not needed.
 
-Nextcloud needs to be accessible on ports 80 and 443 for generating Let's Encrypt certificates.
+Nextcloud needs to be accessible on ports 80 and 443 for generating Let's Encrypt certificates. 80 port is used for authenticating.
 
 ### Credits
 
