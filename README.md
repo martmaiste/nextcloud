@@ -50,8 +50,8 @@ docker run --name nextcloud -p 80:8888 -p 443:4430 \
 ### Building
 
 ```
-git clone https://github.com/martmaiste/nextcloud-docker.git
-docker build -t nextcloud nextcloud-docker
+git clone https://github.com/martmaiste/nextcloud.git
+docker build -t nextcloud nextcloud
 ```
 
 Run nextcloud-docker
