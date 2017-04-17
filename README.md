@@ -1,12 +1,12 @@
 ## Nextcloud Docker using php-fpm, Nginx reverse proxy with SSL and Let's Encrypt support 
 
-## About
+### About
 
 This Nextcloud Docker uses php-fpm, Nginx reverse proxy with SSL and Let's Encrypt.
 By default it uses SQLite but can be configured to use external MySQL or PostgreSQL database.
 At installation, the self-signed SSL certificate is generated. This can later replaced by generating a Let's Encrypt certificate using included tools.
 
-## Installation
+### Installation
 
 Install and run MariaDB 10
 
@@ -58,7 +58,7 @@ docker run --name nextcloud -p 80:8888 -p 443:4430 \
        -t nextcloud
 ```
 
-## Credits
+### Credits
 
 [Nextcloud 11 Dockerfile by Wonderfall](https://github.com/Wonderfall/dockerfiles/tree/master/nextcloud/11.0)
 
