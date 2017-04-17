@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM alpine:latest
 
 ARG NEXTCLOUD_VERSION=11.0.2
 ARG GPG_nextcloud="2880 6A87 8AE4 23A2 8372  792E D758 99B9 A724 937A"
@@ -34,12 +34,14 @@ RUN echo "https://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositori
     openssl \
     certbot \
     s6 \
-    libressl \
     ca-certificates \
     libsmbclient \
     samba-client \
     su-exec \
     tzdata \
+    libwebp \
+    libzip \
+    icu-libs \
     php7 \
     php7-fpm \
     php7-intl \
