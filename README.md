@@ -27,7 +27,7 @@ docker run -d --name nextcloud-db \
 Install and run Nextcloud Docker
 
 ```
-docker run --name nextcloud -p 80:8080 -p 443:8443 \
+docker run -d --name nextcloud -p 80:8080 -p 443:8443 \
        --link nextcloud-db:nextcloud-db \
        -v /mnt2/nextcloud-data:/data \
        -v /mnt2/nextcloud-config:/config \
@@ -57,7 +57,7 @@ docker build -t nextcloud nextcloud
 Run nextcloud-docker
 
 ```
-docker run --name nextcloud -p 80:8888 -p 443:4430 \
+docker run -d --name nextcloud -p 80:8888 -p 443:4430 \
        --link nextcloud-db:nextcloud-db \
        -v /mnt2/nextcloud-data:/data \
        -v /mnt2/nextcloud-config:/config \
