@@ -82,8 +82,7 @@ RUN echo "http://nl.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories \
  && sed -i 's|;session.save_path = "/tmp"|session.save_path = "/data/session"|g' /etc/php7/php.ini \
  && pip install -U pip \
  && pip install -U certbot \
- && mkdir -p /etc/letsencrypt/webrootauth \
- && mkdir -p /etc/letsencrypt/live/localhost \
+ && mkdir -p /etc/letsencrypt/webrootauth /etc/letsencrypt/live/localhost /etc/letsencrypt/archive \
  && mkdir /nextcloud \
  && NEXTCLOUD_TARBALL="nextcloud-${NEXTCLOUD_VERSION}.tar.bz2" \
  && wget -q https://download.nextcloud.com/server/releases/${NEXTCLOUD_TARBALL} \
