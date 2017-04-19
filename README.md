@@ -80,6 +80,18 @@ DOMAIN and EMAIL are mainly used for generating Let's Encrypt certificate later.
 
 Nextcloud needs to be accessible on ports 80 and 443 for generating Let's Encrypt certificates. 80 port is used for authenticating.
 
+### Let's Encrypt certificate setup
+
+```
+docker exec -ti nextcloud letsencrypt-setup
+```
+
+Manual certificate renewal
+
+```
+docker exec -ti nextcloud letsencrypt-renew
+```
+
 ### Credits
 
 [Nextcloud 11 Dockerfile by Wonderfall](https://github.com/Wonderfall/dockerfiles/tree/master/nextcloud/11.0)
