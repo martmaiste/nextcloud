@@ -14,7 +14,8 @@ ENV UID=1000 GID=1000 \
     EMAIL=hostmaster@localhost \
     DOMAIN=localhost
 
-RUN echo "https://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
+RUN echo "http://nl.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories \
+ && echo "http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
  && BUILD_DEPS=" \
     gnupg \
     tar \
@@ -35,6 +36,8 @@ RUN echo "https://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositori
     py-pip \
     openssl \
     s6 \
+    libressl \
+    libressl2.4-libcrypto \
     ca-certificates \
     libsmbclient \
     samba-client \

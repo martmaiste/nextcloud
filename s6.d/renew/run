@@ -1,0 +1,6 @@
+#!/bin/sh
+
+while true; do
+  letsencrypt-renew
+  sleep 7d
+done
