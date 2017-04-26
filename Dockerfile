@@ -1,21 +1,22 @@
 FROM alpine:edge
 
-ARG NEXTCLOUD_VERSION=11.0.2
-ARG GPG_nextcloud="2880 6A87 8AE4 23A2 8372  792E D758 99B9 A724 937A"
+ARG NEXTCLOUD_VERSION=11.0.3
+ARG GPG_nextcloud="2880 6A87 8AE4 23A2 8372  792E D758 99B9 A724 937A""
 
 ENV UID=1000 GID=1000 \
     UPLOAD_MAX_SIZE=10G \
     APC_SHM_SIZE=128M \
     OPCACHE_MEM_SIZE=128 \
+    MEMORY_LIMIT=512M \
     CRON_PERIOD=15m \
     CRON_MEMORY_LIMIT=1g \
     TZ=Etc/UTC \
     DB_TYPE=sqlite3 \
-    EMAIL=hostmaster@localhost \
-    DOMAIN=localhost
+    DOMAIN=localhost \
+    EMAIL=hostmaster@localhost
 
-RUN echo "http://nl.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories \
- && echo "http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
+RUN echo "http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
+ && echo "http://nl.alpinelinux.org/alpine/v3.5/main" >> /etc/apk/repositories \
  && BUILD_DEPS=" \
     gnupg \
     tar \
