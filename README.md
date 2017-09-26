@@ -94,7 +94,7 @@ docker exec -ti nextcloud letsencrypt-renew
 
 ### Credits
 
-[Nextcloud 11 Dockerfile by Wonderfall](https://github.com/Wonderfall/dockerfiles/tree/master/nextcloud/11.0)
+[Nextcloud Dockerfile by Wonderfall](https://github.com/Wonderfall/dockerfiles/tree/master/nextcloud/)
 
 [Nginx with SSL and Let's Eencrypt support by ngineered](https://github.com/ngineered/nginx-php-fpm)
 
