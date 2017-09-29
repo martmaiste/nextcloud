@@ -68,6 +68,7 @@ RUN echo "http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositorie
     php7-xmlreader \
     php7-xml \
     php7-xmlwriter \
+    php7-simplexml \
     php7-posix \
     php7-openssl \
     php7-ldap \
