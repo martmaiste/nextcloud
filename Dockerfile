@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM alpine:3.7
 
 ARG NEXTCLOUD_VERSION=13.0.0
 ARG GPG_nextcloud="2880 6A87 8AE4 23A2 8372  792E D758 99B9 A724 937A"
@@ -15,9 +15,7 @@ ENV UID=1000 GID=1000 \
     DOMAIN=localhost \
     EMAIL=hostmaster@localhost
 
-RUN echo "http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
- && echo "http://nl.alpinelinux.org/alpine/v3.5/main" >> /etc/apk/repositories \
- && BUILD_DEPS=" \
+RUN BUILD_DEPS=" \
     gnupg \
     tar \
     build-base \
@@ -38,7 +36,7 @@ RUN echo "http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositorie
     openssl \
     s6 \
     libressl \
-    libressl2.4-libcrypto \
+#    libressl2.4-libcrypto \
     ca-certificates \
     libsmbclient \
     samba-client \
