@@ -81,6 +81,7 @@ RUN BUILD_DEPS=" \
  && echo "extension=smbclient.so" > /etc/php7/conf.d/00_smbclient.ini \
  && sed -i 's|;session.save_path = "/tmp"|session.save_path = "/data/session"|g' /etc/php7/php.ini \
  && pip install -U pip \
+ && pip install -U requests \
  && pip install -U certbot \
  && mkdir -p /etc/letsencrypt/webrootauth /etc/letsencrypt/live/localhost /etc/letsencrypt/archive \
  && mkdir /nextcloud \
