@@ -1,4 +1,4 @@
-FROM alpine:3.8
+FROM alpine:3.9
 
 ARG NEXTCLOUD_VERSION=15.0.5
 ARG GPG_nextcloud="2880 6A87 8AE4 23A2 8372  792E D758 99B9 A724 937A"
@@ -36,7 +36,6 @@ RUN BUILD_DEPS=" \
     openssl \
     s6 \
     libressl \
-#    libressl2.4-libcrypto \
     ca-certificates \
     libsmbclient \
     samba-client \
@@ -77,7 +76,8 @@ RUN BUILD_DEPS=" \
     php7-iconv \
     php7-pear \
     php7-dev \
- && pecl install smbclient apcu \
+    php7-pecl-apcu \
+ && pecl install smbclient \
  && echo "extension=smbclient.so" > /etc/php7/conf.d/00_smbclient.ini \
  && sed -i 's|;session.save_path = "/tmp"|session.save_path = "/data/session"|g' /etc/php7/php.ini \
  && pip install -U pip \
