@@ -1,6 +1,6 @@
 FROM alpine:3.9
 
-ARG NEXTCLOUD_VERSION=16.0.6
+ARG NEXTCLOUD_VERSION=16.0.0
 ARG GPG_nextcloud="2880 6A87 8AE4 23A2 8372  792E D758 99B9 A724 937A"
 
 ENV UID=1000 GID=1000 \
@@ -37,6 +37,7 @@ RUN BUILD_DEPS=" \
     s6 \
     libressl \
     ca-certificates \
+    certbot \
     libsmbclient \
     samba-client \
     su-exec \
@@ -81,9 +82,6 @@ RUN BUILD_DEPS=" \
  && pecl install smbclient \
  && echo "extension=smbclient.so" > /etc/php7/conf.d/00_smbclient.ini \
  && sed -i 's|;session.save_path = "/tmp"|session.save_path = "/data/session"|g' /etc/php7/php.ini \
- && pip install -U pip \
- && pip install -U requests \
- && pip install -U certbot \
  && mkdir -p /etc/letsencrypt/webrootauth /etc/letsencrypt/live/localhost /etc/letsencrypt/archive \
  && mkdir /nextcloud \
  && NEXTCLOUD_TARBALL="nextcloud-${NEXTCLOUD_VERSION}.tar.bz2" \
