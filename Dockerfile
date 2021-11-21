@@ -1,6 +1,6 @@
-FROM alpine:3.9
+FROM alpine:latest
 
-ARG NEXTCLOUD_VERSION=20.0.8
+ARG NEXTCLOUD_VERSION=22.2.3
 ARG GPG_nextcloud="2880 6A87 8AE4 23A2 8372  792E D758 99B9 A724 937A"
 
 ENV UID=1000 GID=1000 \
@@ -25,13 +25,13 @@ RUN BUILD_DEPS=" \
     libtool \
     libffi-dev \
     openssl-dev \
-    python-dev \
+    python3-dev \
     samba-dev" \
  && apk -U upgrade && apk add \
     ${BUILD_DEPS} \
     bash \
     nginx \
-    python \
+    python3 \
     py-pip \
     openssl \
     s6 \
